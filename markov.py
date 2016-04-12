@@ -28,11 +28,44 @@ def make_chains(text_string):
         {('hi', 'there'): ['mary', 'juanita'], ('there', 'mary'): ['hi'], ('mary', 'hi': ['there']}
     """
 
+
+    words = input_text.split()
+
     chains = {}
 
-    # your code goes here
 
-    return chains
+    for index in range(len(words) - 2):
+
+        key_tuple = (words[index], words[index + 1])
+        value = [words[index + 2]]
+
+        # chains[key_tuple] = value
+
+        if key_tuple in chains:
+            value.append(words[index + 2])
+        else:
+            chains[key_tuple] = value
+            # value = [words[index + 2]]
+
+
+
+
+
+
+
+        # chains[(words[index], words[index + 1])] = values
+
+
+        # key_tuple = values
+
+        # chains.get((words[index], words[index + 1]), values.append(words[index + 2]))  # check if key in dictionary, if not, make a list.
+
+        # words[index + 2:]# key tuples
+    print chains
+
+
+
+    # return chains
 
 
 def make_text(chains):
