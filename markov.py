@@ -36,36 +36,46 @@ def make_chains(text_string):
 
     for index in range(len(words) - 2):
 
-        key_tuple = (words[index], words[index + 1])
-        value = [words[index + 2]]
+        key = (words[index], words[index + 1])
+        value = words[index + 2]
+        # values = []
 
-        # chains[key_tuple] = value
+        if key not in chains:
+            chains[key] = []
+            chains[key].append(value)
 
-        if key_tuple in chains:
-            value.append(words[index + 2])
         else:
-            chains[key_tuple] = value
-            # value = [words[index + 2]]
+            chains[key].append(value) 
+
+    return chains
+
+        # Below code is same as above, but logic is reversed (else statement read first)
+
+        # if key in chains:
+        #     chains[key].append(value) 
+
+        # else:
+        #     chains[key] = []  
+        #     chains[key].append(value)
 
 
+        # Below code is what we tried first time around, but values not linked to key
+
+        # values = []
+        # chains[key] = value
+
+        # if key in chains:
+        #     values.append(value)
+        # else:
+        #     values.append(value)
+        #     chains[key] = values
+        #     # value = [words[index + 2]]
 
 
+        # .setdefault code below works same as if/else statement above, but not understanding why .get does not work and returns empty dictionary {}
 
-
-
-        # chains[(words[index], words[index + 1])] = values
-
-
-        # key_tuple = values
-
-        # chains.get((words[index], words[index + 1]), values.append(words[index + 2]))  # check if key in dictionary, if not, make a list.
-
-        # words[index + 2:]# key tuples
-    print chains
-
-
-
-    # return chains
+        # chains.setdefault(key, []).append(value)
+        # dictionary.get(dictionary[key], values).append(value) 
 
 
 def make_text(chains):
