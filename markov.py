@@ -73,6 +73,7 @@ def make_chains(text_string):
             # print key, "just added", value, "now consists of: ", chains[key]
  
 
+
     print chains 
     return chains
 
@@ -102,17 +103,56 @@ def make_chains(text_string):
         # .setdefault code below works same as if/else statement above, but not understanding why .get does not work and returns empty dictionary {}
 
         # chains.setdefault(key, []).append(value)
+        
         # chains.get(key, []).append(value) 
+        # chains[key] = chains.get(key, [])
 
+import random 
 
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
 
     text = ""
 
-    # your code goes here
+    current_key = random.choice(chains.keys())
 
-    return text
+    text = current_key[0] + current_key[1]
+
+    # chains.items() returns a list that contains tuples, in which each tuple contains a tuple (key) and a list (value).
+    # loops through each key and gets a random word
+    # key is then rebinded to second word in key and the chosen word, then this key loops through dict to get the next random word and concatenated to the text
+
+    while current_key != ('Sam', 'I'):
+        for key, value in chains.items():
+            if key == current_key:
+                chosen_word = random.choice(value)
+                # print "Key inside: ", key
+                # print "Word inside: ", chosen_word
+                current_key = (current_key[1], chosen_word)
+                text += chosen_word
+                
+                print "First key: ", key
+                print "Chosen word: ", chosen_word
+                print "Second key: ", current_key
+
+
+    print "Text: ", text
+        # for key, value in chains.items():
+        #     if key == new_key:
+        #         chosen_word = random.choice(value)
+        #         new_key = (new_key[1], chosen_word)
+
+        #         print "Rebinded key: ", new_key
+
+    # print "Current key: ", current_key
+    # print "Chosen word: ", chosen_word
+
+    
+
+    #     text += key[1] + ' ' + random.choice(value) + ' '
+    
+    # print text
+    # return text
 
 
 input_path = "green-eggs.txt"
