@@ -38,15 +38,42 @@ def make_chains(text_string):
 
         key = (words[index], words[index + 1])
         value = words[index + 2]
-        # values = []
+
+        # Lines 43 - 57, semantic error 
+        # if key not in chains:
+        #     values = []
+        #     chains[key] = values
+        #     print "ID before: ", id(values)
+        #     # print "ID chains[key]: ", id(chains[key])
+        #     print key, "has empty list: ", chains[key]
+        #     values.append(value)
+        #     print "ID after: ", id(values)
+        #     print key, "has list of 1 value: ", chains[key]
+
+
+        # else:
+        #     values.append(value)
+        #     print key, "just added", value, "now consists of: ", chains[key]
+        #     print "ID key exists: ", id(values)
+
+
+    # print chains
+    # return chains
+
+
+    # WORKING CODE
 
         if key not in chains:
             chains[key] = []
+            # print key, "has empty list: ", chains[key]
             chains[key].append(value)
-
+            # print key, "has list of 1 value: ", chains[key]
         else:
-            chains[key].append(value) 
+            chains[key].append(value)
+            # print key, "just added", value, "now consists of: ", chains[key]
+ 
 
+    print chains 
     return chains
 
         # Below code is same as above, but logic is reversed (else statement read first)
@@ -59,7 +86,7 @@ def make_chains(text_string):
         #     chains[key].append(value)
 
 
-        # Below code is what we tried first time around, but values not linked to key
+        # Below code is what we tried first time around, but values not linked to key and is outside of if/else statement so resets each iteration
 
         # values = []
         # chains[key] = value
@@ -75,7 +102,7 @@ def make_chains(text_string):
         # .setdefault code below works same as if/else statement above, but not understanding why .get does not work and returns empty dictionary {}
 
         # chains.setdefault(key, []).append(value)
-        # dictionary.get(dictionary[key], values).append(value) 
+        # chains.get(key, []).append(value) 
 
 
 def make_text(chains):
